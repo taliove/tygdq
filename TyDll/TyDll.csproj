@@ -1,0 +1,183 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{46A2BF3C-D109-4A67-88FA-79FD149BF95B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TyDll</RootNamespace>
+    <AssemblyName>TyDll</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Consts.cs" />
+    <Compile Include="EMouseState.cs" />
+    <Compile Include="Enums.cs" />
+    <Compile Include="ESysButton.cs" />
+    <Compile Include="FormBase.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GetResources.cs" />
+    <Compile Include="KeyHook.cs" />
+    <Compile Include="NativeMethods.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Structs.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\TXT\常用词组前三百.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\TXT\常用单字后五百.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\TXT\常用单字前五百.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\TXT\常用单字中五百.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\TXT\前1500单字.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\TXT\为人民服务节选.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\TXT\岳阳楼记.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\QQ\Button\down.png" />
+    <Content Include="Resources\QQ\Button\focus.png" />
+    <Content Include="Resources\QQ\Button\gray.png" />
+    <Content Include="Resources\QQ\Button\highlight.png" />
+    <Content Include="Resources\QQ\Button\Light.png" />
+    <Content Include="Resources\QQ\Button\normal.png" />
+    <Content Include="Resources\QQ\Button\White-side.png" />
+    <Content Include="Resources\QQ\CheckBox\hightlight.png" />
+    <Content Include="Resources\QQ\CheckBox\normal.png" />
+    <Content Include="Resources\QQ\CheckBox\tick_highlight.png" />
+    <Content Include="Resources\QQ\CheckBox\tick_normal.png" />
+    <Content Include="Resources\QQ\CheckBox\_tick_highlight.png" />
+    <Content Include="Resources\QQ\CheckBox\_tick_normal.png" />
+    <Content Include="Resources\QQ\ComboBox\login_inputbtn_down.png" />
+    <Content Include="Resources\QQ\ComboBox\login_inputbtn_highlight.png" />
+    <Content Include="Resources\QQ\ComboBox\login_inputbtn_normal.png" />
+    <Content Include="Resources\QQ\ContextMenu\menu_arrow.png" />
+    <Content Include="Resources\QQ\ContextMenu\menu_bkg.png" />
+    <Content Include="Resources\QQ\ContextMenu\menu_bkg_board.png" />
+    <Content Include="Resources\QQ\ContextMenu\menu_check.png" />
+    <Content Include="Resources\QQ\ContextMenu\menu_cutling.png" />
+    <Content Include="Resources\QQ\ContextMenu\menu_highlight.png" />
+    <EmbeddedResource Include="Resources\QQ\FormFrame\ContactFilter_splitter.png" />
+    <EmbeddedResource Include="Resources\QQ\FormFrame\fringe_bkg.png" />
+    <Content Include="Resources\QQ\head.png" />
+    <Content Include="Resources\QQ\ListBox\comboboxEraseButton_Hover.png" />
+    <Content Include="Resources\QQ\ListBox\comboboxEraseButton_Normal.bmp" />
+    <Content Include="Resources\QQ\ListBox\comboboxEraseButton_Push.png" />
+    <Content Include="Resources\QQ\ListBox\listitem_check.png" />
+    <Content Include="Resources\QQ\RadioButton\highlight.png" />
+    <Content Include="Resources\QQ\RadioButton\normal.png" />
+    <Content Include="Resources\QQ\RadioButton\tick_highlight.png" />
+    <Content Include="Resources\QQ\RadioButton\tick_normal.png" />
+    <Content Include="Resources\QQ\ScrollBar\Scrollbg.png" />
+    <Content Include="Resources\QQ\ScrollBar\Scrollkit.png" />
+    <Content Include="Resources\QQ\ScrollBar\VScroll_Down.png" />
+    <Content Include="Resources\QQ\ScrollBar\VScroll_Middle.png" />
+    <Content Include="Resources\QQ\ScrollBar\VScroll_Middle_Enter.png" />
+    <Content Include="Resources\QQ\ScrollBar\VScroll_Up.png" />
+    <Content Include="Resources\QQ\SkinMgr\aio_light_bkg.png" />
+    <Content Include="Resources\QQ\SkinMgr\aio_nolight_bkg.png" />
+    <Content Include="Resources\QQ\SkinMgr\aio_png_bkg.png" />
+    <Content Include="Resources\QQ\SkinMgr\aio_png_bkg_sms.png" />
+    <Content Include="Resources\QQ\SkinMgr\aio_white_bkg.png" />
+    <Content Include="Resources\QQ\SkinMgr\aio_withbar_png_bkg.png" />
+    <Content Include="Resources\QQ\SkinMgr\all_inside02_bkg.png" />
+    <Content Include="Resources\QQ\SkinMgr\all_inside04_bkg.png" />
+    <Content Include="Resources\QQ\SkinMgr\all_inside05_bkg.png" />
+    <Content Include="Resources\QQ\SkinMgr\all_inside_bkg.png" />
+    <Content Include="Resources\QQ\SkinMgr\all_light_bkg.png" />
+    <Content Include="Resources\QQ\SkinMgr\all_nolight_bkg.png" />
+    <Content Include="Resources\QQ\SkinMgr\all_white_bkg.png" />
+    <Content Include="Resources\QQ\SkinMgr\fringe_bkg.png.png" />
+    <Content Include="Resources\QQ\SkinMgr\lock_png_bkg.png" />
+    <Content Include="Resources\QQ\SkinMgr\main_bluelight_bkg.png" />
+    <Content Include="Resources\QQ\SkinMgr\main_light_bkg.png" />
+    <Content Include="Resources\QQ\SkinMgr\main_nolight_bkg.png" />
+    <Content Include="Resources\QQ\SkinMgr\main_png_bkg.png" />
+    <Content Include="Resources\QQ\SkinMgr\main_white_bkg.png" />
+    <Content Include="Resources\QQ\SkinMgr\shadow_bkg.png.png" />
+    <Content Include="Resources\QQ\SkinMgr\whilt_bkg.png.png" />
+    <EmbeddedResource Include="Resources\QQ\SysButton\btn_close_down.png" />
+    <EmbeddedResource Include="Resources\QQ\SysButton\btn_close_highlight.png" />
+    <EmbeddedResource Include="Resources\QQ\SysButton\btn_close_normal.png" />
+    <EmbeddedResource Include="Resources\QQ\SysButton\btn_max_down.png" />
+    <EmbeddedResource Include="Resources\QQ\SysButton\btn_max_highlight.png" />
+    <EmbeddedResource Include="Resources\QQ\SysButton\btn_max_normal.png" />
+    <EmbeddedResource Include="Resources\QQ\SysButton\btn_mini_down.png" />
+    <EmbeddedResource Include="Resources\QQ\SysButton\btn_mini_highlight.png" />
+    <EmbeddedResource Include="Resources\QQ\SysButton\btn_mini_normal.png" />
+    <EmbeddedResource Include="Resources\QQ\SysButton\btn_restore_down.png" />
+    <EmbeddedResource Include="Resources\QQ\SysButton\btn_restore_highlight.png" />
+    <EmbeddedResource Include="Resources\QQ\SysButton\btn_restore_normal.png" />
+    <Content Include="Resources\QQ\TabControl\main_tabbtn_down.png" />
+    <Content Include="Resources\QQ\TabControl\main_tabbtn_highlight.png" />
+    <Content Include="Resources\QQ\TabControl\main_tab_background.png" />
+    <Content Include="Resources\QQ\TabControl\main_tab_bkg.png" />
+    <Content Include="Resources\QQ\TabControl\main_tab_check.png" />
+    <Content Include="Resources\QQ\TabControl\main_tab_highlight.png" />
+    <Content Include="Resources\QQ\TextBox\move.png" />
+    <Content Include="Resources\QQ\TextBox\normal.png" />
+    <Content Include="Resources\QQ\ToolButton\allbtn_down.png" />
+    <Content Include="Resources\QQ\ToolButton\allbtn_highlight.png" />
+    <Content Include="Resources\QQ\ToolButton\allbtn_left_down.png" />
+    <Content Include="Resources\QQ\ToolButton\allbtn_left_highlight.png" />
+    <Content Include="Resources\QQ\ToolButton\allbtn_right_down.png" />
+    <Content Include="Resources\QQ\ToolButton\allbtn_right_highlight.png" />
+    <Content Include="Resources\QQ\UserList\collapseTexture.png" />
+    <Content Include="Resources\QQ\UserList\collapseTextureHigh.png" />
+    <Content Include="Resources\QQ\UserList\expandTexture.png" />
+    <Content Include="Resources\QQ\UserList\expandTextureHigh.png" />
+    <Content Include="Resources\QQ\UserList\headbg.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
