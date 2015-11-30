@@ -90,7 +90,8 @@ namespace WindowsFormsApplication2
             //MessageBox.Show(oThread.ThreadState.ToString());
             RegisterHotKey(this.Handle, 2, (int)KeyModifiers.None, (Keys.F4)); //获取
             RegisterHotKey(this.Handle, 3, (int)KeyModifiers.None, (Keys.F3)); //重打
-            RegisterHotKey(this.Handle, 4, (int)KeyModifiers.None, (Keys.F6)); //发文测试
+            RegisterHotKey(this.Handle, 4, (int)KeyModifiers.None, (Keys.F5)); //重打
+            RegisterHotKey(this.Handle, 5, (int)KeyModifiers.None, (Keys.F6)); //发文测试
 
             //RegisterHotKey(this.Handle, 6, (int)KeyModifiers.None, (Keys.F8)); //接收挑战
             F5();
@@ -392,10 +393,10 @@ namespace WindowsFormsApplication2
             Glob.r1Back = Color.FromArgb(int.Parse(IniRead("外观", "对照区颜色", "-722948")));
             richTextBox1.BackColor = Glob.r1Back;
             textBoxEx1.BackColor = Color.FromArgb(int.Parse(IniRead("外观", "跟打区颜色", "-722948")));
-            //            Glob.Right = richTextBox1.BackColor;// Color.FromArgb(int.Parse(IniRead("外观", "打对颜色", "-8355712")));
-            //            Glob.False = richTextBox1.BackColor;// Color.FromArgb(int.Parse(IniRead("外观", "打错颜色", "-38294")));
             Glob.Right = Color.FromArgb(int.Parse(IniRead("外观", "打对颜色", "-8355712")));
             Glob.False = Color.FromArgb(int.Parse(IniRead("外观", "打错颜色", "-38294")));
+            //            Glob.Right = Color.FromArgb(int.Parse(IniRead("外观", "打对颜色", "-8355712")));
+            //            Glob.False = Color.FromArgb(int.Parse(IniRead("外观", "打错颜色", "-38294")));
             //下方工具条颜色
             //this.toolStripButton1.BorderColor = Color.FromArgb(253,144,91);//替换
             //this.toolStripBtnLS.BorderColor = Color.FromArgb(255,127,24);//限制
@@ -1423,8 +1424,7 @@ namespace WindowsFormsApplication2
                                     {
                                         Glob.FWords.Add(i);
                                     }
-                                    Glob.Type_Map_Color = Color.OrangeRed;//todo 根据命需求，回改时不显示
-                                                                          //                                    Glob.Type_Map_Color = Glob.Type_map_C_1;
+                                    Glob.Type_Map_Color = Color.OrangeRed;
                                     g++;
 
                                 }
@@ -1633,10 +1633,8 @@ namespace WindowsFormsApplication2
                     if (Glob.TextCz != 0)
                     {
                         if (speed2 < 0) { speed2 = 0.00; }
-                        //命需求 错1罚5 速度除半
-                        var half = speed2 / 2;
-                        Spsend = half.ToString("0.00") + "/" + speed.ToString("0.00");
-                        Spsend1 = half.ToString("0.00");
+                        Spsend = speed2.ToString("0.00") + "/" + speed.ToString("0.00");
+                        Spsend1 = speed2.ToString("0.00");
                         FalutIns = " 错情：[" + RightAndFault + "]";
                     }
                     else
