@@ -94,6 +94,8 @@ namespace WindowsFormsApplication2
             RegisterHotKey(this.Handle, 3, (int)KeyModifiers.None, (Keys.F3)); //重打
             RegisterHotKey(this.Handle, 4, (int)KeyModifiers.None, (Keys.F5)); //换群//todo根据命需求而改
             RegisterHotKey(this.Handle, 5, (int)KeyModifiers.None, (Keys.F6)); //发文测试
+            RegisterHotKey(this.Handle, 6, (int)KeyModifiers.None, (Keys.F1)); //打开设置
+            RegisterHotKey(this.Handle, 7, (int)KeyModifiers.None, (Keys.F2)); //发文
 
             //RegisterHotKey(this.Handle, 6, (int)KeyModifiers.None, (Keys.F8)); //接收挑战
             F5();
@@ -2809,38 +2811,47 @@ namespace WindowsFormsApplication2
             switch (m.Msg)
             {
                 case WM_HOTKEY:
-                    if ((int)m.WParam == 2)
-                    { //F4 获取文字
-                        F4();
-                    }
-                    else if ((int)m.WParam == 3) //重打全局
+                    switch ((int)m.WParam)
                     {
-                        SwitchToThisWindow(FindWindow(null, Glob.Form), true);
-                        if (GetForegroundWindow().ToInt32() != this.Handle.ToInt32())
-                        {
-                            this.Show();
-                            this.Activate();
-                            this.textBoxEx1.Select();
-                            if (Glob.TypeTextCount > 0 && this.textBoxEx1.TextLength != this.richTextBox2.TextLength)
-                                ShowFlowText("已激活跟打器，未设重打~");
-                            return;
-                        }
-                        F3();
-                    }
-                    else if ((int)m.WParam == 4)
-                    {
-                        F5();
-                    }
-                    else if ((int)m.WParam == 5)
-                    { //F6
-                        if (NewSendText.发文状态)// (zdSendText.isHand) //手动模式
-                        {
-                            //this.textBox1.TextChanged -= new System.EventHandler(textBoxEx1_TextChanged);
-                            SendAOnce();
-                            //SendAOnce();
+                        case 2:
+                            //F4 获取文字
+                            F4();
+                            break;
+                        case 3:
+                            SwitchToThisWindow(FindWindow(null, Glob.Form), true);
+                            if (GetForegroundWindow().ToInt32() != this.Handle.ToInt32())
+                            {
+                                this.Show();
+                                this.Activate();
+                                this.textBoxEx1.Select();
+                                if (Glob.TypeTextCount > 0 && this.textBoxEx1.TextLength != this.richTextBox2.TextLength)
+                                    ShowFlowText("已激活跟打器，未设重打~");
+                                return;
+                            }
                             F3();
-                            //this.textBox1.TextChanged += new System.EventHandler(textBoxEx1_TextChanged);
-                        }
+                            break;
+                        case 4:
+                            F5();
+                            break;
+                        case 5:
+                            //F6
+                            if (NewSendText.发文状态)// (zdSendText.isHand) //手动模式
+                            {
+                                //this.textBox1.TextChanged -= new System.EventHandler(textBoxEx1_TextChanged);
+                                SendAOnce();
+                                //SendAOnce();
+                                F3();
+                                //this.textBox1.TextChanged += new System.EventHandler(textBoxEx1_TextChanged);
+                            }
+                            break;
+                        case 6:
+                            //设置
+                            this.设置ToolStripMenuItem1_Click(this.设置ToolStripMenuItem1, null);
+                            break;
+                        case 7:
+                            //发文
+                            this.新发文ToolStripMenuItem_Click(this.新发文ToolStripMenuItem, null);
+                            break;
                     }
                     break;
 
