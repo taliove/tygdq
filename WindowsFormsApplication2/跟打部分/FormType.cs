@@ -41,6 +41,7 @@ namespace WindowsFormsApplication2
         private WordInfoUtil _wordInfoUtil = new WordInfoUtil();
         private RichEditBoxLineRender _render = new RichEditBoxLineRender();
         private FormBMTipsModel bmTips;//编码提示
+        private readonly Regex _chineseRegex = new Regex(@"^[\u4E00-\u9FA5]+$");
         //private Stopwatch UseStopTime = new Stopwatch();
         public Form1()
         {
@@ -80,7 +81,7 @@ namespace WindowsFormsApplication2
         private void Form1_Load(object sender, EventArgs e)
         {
             //改变窗口标题
-            this.Text = Glob.Form + Glob.Ver;
+            this.Text = "添雨跟打器[看打版]";// Glob.Form + Glob.Ver;
             Glob.Text = richTextBox1.Text;
             //Control.CheckForIllegalCrossThreadCalls = false;
             //Thread oThread = new Thread(new ThreadStart(this.LoadSetup));
@@ -392,17 +393,17 @@ namespace WindowsFormsApplication2
             Glob.r1Back = Color.FromArgb(int.Parse(IniRead("外观", "对照区颜色", "-722948")));
             richTextBox1.BackColor = Glob.r1Back;
             textBoxEx1.BackColor = Color.FromArgb(int.Parse(IniRead("外观", "跟打区颜色", "-722948")));
-            //            Glob.Right = richTextBox1.BackColor;// Color.FromArgb(int.Parse(IniRead("外观", "打对颜色", "-8355712")));
-            //            Glob.False = richTextBox1.BackColor;// Color.FromArgb(int.Parse(IniRead("外观", "打错颜色", "-38294")));
-            Glob.Right = Color.FromArgb(int.Parse(IniRead("外观", "打对颜色", "-8355712")));
-            Glob.False = Color.FromArgb(int.Parse(IniRead("外观", "打错颜色", "-38294")));
-            //下方工具条颜色
-            //this.toolStripButton1.BorderColor = Color.FromArgb(253,144,91);//替换
-            //this.toolStripBtnLS.BorderColor = Color.FromArgb(255,127,24);//限制
-            //this.toolStripButton3.BorderColor = Color.Yellow;//潜水
-            //this.toolStripButton4.BorderColor = Color.FromArgb(0, 198, 37);//详细
-            //this.tsb标注.BorderColor = Color.FromArgb(255,0,10);
-            //this.toolButton1.BorderColor = Color.FromArgb(0,192,180);//精五
+            Glob.Right = richTextBox1.BackColor;// Color.FromArgb(int.Parse(IniRead("外观", "打对颜色", "-8355712")));
+            Glob.False = richTextBox1.BackColor;// Color.FromArgb(int.Parse(IniRead("外观", "打错颜色", "-38294")));
+                                                //            Glob.Right = Color.FromArgb(int.Parse(IniRead("外观", "打对颜色", "-8355712")));
+                                                //            Glob.False = Color.FromArgb(int.Parse(IniRead("外观", "打错颜色", "-38294")));
+                                                //下方工具条颜色
+                                                //this.toolStripButton1.BorderColor = Color.FromArgb(253,144,91);//替换
+                                                //this.toolStripBtnLS.BorderColor = Color.FromArgb(255,127,24);//限制
+                                                //this.toolStripButton3.BorderColor = Color.Yellow;//潜水
+                                                //this.toolStripButton4.BorderColor = Color.FromArgb(0, 198, 37);//详细
+                                                //this.tsb标注.BorderColor = Color.FromArgb(255,0,10);
+                                                //this.toolButton1.BorderColor = Color.FromArgb(0,192,180);//精五
 
             //载入设置
             savesetup.srf = IniRead("输入法", "惯用设置", ""); //输入法
@@ -414,8 +415,11 @@ namespace WindowsFormsApplication2
             Glob.InstraSrf = IniRead("输入法", "签名", "");
             Glob.InstraSrf_ = IniRead("输入法", "标志", "0");
             FontConverter fc = new FontConverter();
-            Glob.font_1 = (Font)fc.ConvertFromString(IniRead("外观", "对照区字体", "宋体, 21.75pt"));
-            Glob.font_2 = (Font)fc.ConvertFromString(IniRead("外观", "跟打区字体", "宋体, 12pt"));
+            //todo 根据命需求而改
+            //            Glob.font_1 = (Font)fc.ConvertFromString(IniRead("外观", "对照区字体", "宋体, 21.75pt"));
+            //            Glob.font_2 = (Font)fc.ConvertFromString(IniRead("外观", "跟打区字体", "宋体, 12pt"));
+            Glob.font_1 = new Font("宋体", 12f);
+            Glob.font_2 = new Font("宋体", 12f);
             richTextBox1.ForeColor = Color.Black;
             textBoxEx1.Font = Glob.font_2;
             this.richTextBox1.FontChanged += new EventHandler(richTextBox1_FontChanged);
@@ -1423,8 +1427,8 @@ namespace WindowsFormsApplication2
                                     {
                                         Glob.FWords.Add(i);
                                     }
-                                    Glob.Type_Map_Color = Color.OrangeRed;//todo 根据命需求，回改时不显示
-                                                                          //                                    Glob.Type_Map_Color = Glob.Type_map_C_1;
+                                    //                                    Glob.Type_Map_Color = Color.OrangeRed;//todo 根据命需求，回改时不显示
+                                    Glob.Type_Map_Color = Glob.Type_map_C_1;
                                     g++;
 
                                 }
@@ -1442,7 +1446,10 @@ namespace WindowsFormsApplication2
                                     }
                                     else
                                     {
-                                        Glob.aTypeWords++;
+                                        if (_chineseRegex.IsMatch(nowinput))
+                                        {
+                                            Glob.aTypeWords++;
+                                        }
                                     } //排除符号
                                 }
                                 Glob.aTypeWords++;
@@ -1550,8 +1557,8 @@ namespace WindowsFormsApplication2
                         //}
                     }
                     Type_Map(Glob.Type_Map_Color, 跟打地图步进, 1);
-                    //更新错字
-                    this.labelBM.Text = Glob.FWords.Count.ToString();
+                    //更新错字todo 根据命需求，不再显示错字
+                    //                    this.labelBM.Text = Glob.FWords.Count.ToString();
                     if (Glob.isPointIt)
                         _render.SetCurrIndex(TextLenNow);
                 }
@@ -1858,6 +1865,7 @@ namespace WindowsFormsApplication2
                             //if (sortsend.Contains("P") || Glob.isMatch) //如果含有添雨验证则 或开启了比赛模式
                             // {
                             //TotalSend += " 校验码:" + 精五验证((int)speed2, (int)jj, (int)mc, (int)Glob.typeUseTime);//
+                            TotalSend += " [看打版]";//todo 根据命需求，添加看打版到检验码中
                             if (!Glob.jwMatchMoudle)
                                 TotalSend += " 校验:" + 添雨验证(TotalSend);
                             // }
@@ -2419,7 +2427,8 @@ namespace WindowsFormsApplication2
         {
             get
             {
-                string ins = Glob.Instration + Glob.Ver;
+                // todo 根据命需求，去除版本号
+                string ins = "";//Glob.Instration + Glob.Ver;
                 if (Glob.TextCz > 0)
                 {
                     ins += " [错1罚5]";
@@ -3494,7 +3503,7 @@ namespace WindowsFormsApplication2
             LblTimeFlash = false;
             labelTimeFlys.ForeColor = Color.Black;
             isPause = false;
-            this.Text = Glob.Form;
+            this.Text = "添雨跟打器[看打版]";// Glob.Form;
         }
         private void labelTimeFlys_Click(object sender, EventArgs e)
         {
@@ -3990,8 +3999,11 @@ namespace WindowsFormsApplication2
             {
                 goal += this.dataGridView1.Columns[i].Name + this.dataGridView1.CurrentRow.Cells[i].Value + " ";
             }
+            //todo 根据命需求，添加看打版到验证，并且去除t46字样
+            goal += " [看打版]";
             goal += " 校验:" + 添雨验证(goal);
-            goal += Glob.Instration + " [复制成绩]";
+            //            goal += Glob.Instration + " [复制成绩]";
+            goal += " [复制成绩]";
             ClipboardHandler.SetTextToClipboard(goal);
 
         }
@@ -4514,10 +4526,11 @@ namespace WindowsFormsApplication2
             {
                 this.将目前文章乱序ToolStripMenuItem.PerformClick();
             }
-            else if (e.KeyCode == Keys.F5)
-            {
-                F5();
-            }
+            //todo 根据命需求，屏蔽F1 F2 F5
+            //            else if (e.KeyCode == Keys.F5)
+            //            {
+            //                F5();
+            //            }
             else if (e.KeyCode == Keys.PageDown)
             {
                 int c = this.TSMI2.DropDownItems.Count;
@@ -4561,18 +4574,18 @@ namespace WindowsFormsApplication2
             }
             else if (e.KeyCode == Keys.End)
             {
-            }
-            else if (e.KeyCode == Keys.F1)
-            {
-                //string s = this.SeriesSpeed.Points.
-                if (sw != 0) return;
-                this.设置ToolStripMenuItem1.PerformClick();
-            }
-            else if (e.KeyCode == Keys.F2)
-            {
-                if (sw != 0) return;
-                this.新发文ToolStripMenuItem.PerformClick();
-            }
+            }//todo 根据命需求，屏蔽F1 F2 F5
+             //            else if (e.KeyCode == Keys.F1)
+             //            {
+             //                //string s = this.SeriesSpeed.Points.
+             //                if (sw != 0) return;
+             //                this.设置ToolStripMenuItem1.PerformClick();
+             //            }
+             //            else if (e.KeyCode == Keys.F2)
+             //            {
+             //                if (sw != 0) return;
+             //                this.新发文ToolStripMenuItem.PerformClick();
+             //            }
             else if (e.KeyCode == Keys.V && e.Control)
             {
 

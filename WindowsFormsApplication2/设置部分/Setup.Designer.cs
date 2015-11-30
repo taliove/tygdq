@@ -763,6 +763,7 @@
             // splitContainer1
             // 
             this.splitContainer1.BackColor = System.Drawing.Color.Transparent;
+            this.splitContainer1.Enabled = false;
             this.splitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
             this.splitContainer1.IsSplitterFixed = true;
             this.splitContainer1.Location = new System.Drawing.Point(0, 101);
@@ -935,10 +936,10 @@
             this.tabPage1.Controls.Add(this.panel7);
             this.tabPage1.Controls.Add(this.panel5);
             this.tabPage1.Controls.Add(this.splitContainer1);
-            this.tabPage1.Location = new System.Drawing.Point(4, 21);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(294, 322);
+            this.tabPage1.Size = new System.Drawing.Size(294, 321);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "基础设置";
             // 
@@ -1004,10 +1005,10 @@
             this.tabPage2.Controls.Add(this.panel极简模式);
             this.tabPage2.Controls.Add(this.panel10);
             this.tabPage2.Controls.Add(this.panel9);
-            this.tabPage2.Location = new System.Drawing.Point(4, 21);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(294, 322);
+            this.tabPage2.Size = new System.Drawing.Size(294, 321);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "发送格式";
             // 
@@ -1021,7 +1022,7 @@
             this.panel极简模式.Enabled = false;
             this.panel极简模式.Location = new System.Drawing.Point(64, 191);
             this.panel极简模式.Name = "panel极简模式";
-            this.panel极简模式.Size = new System.Drawing.Size(227, 35);
+            this.panel极简模式.Size = new System.Drawing.Size(227, 34);
             this.panel极简模式.TabIndex = 3;
             // 
             // label18
@@ -1040,7 +1041,7 @@
             this.panel10.Controls.Add(this.label9);
             this.panel10.Controls.Add(this.splitter2);
             this.panel10.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel10.Location = new System.Drawing.Point(3, 226);
+            this.panel10.Location = new System.Drawing.Point(3, 225);
             this.panel10.Name = "panel10";
             this.panel10.Size = new System.Drawing.Size(288, 93);
             this.panel10.TabIndex = 1;
@@ -1278,9 +1279,9 @@
             this.tabPage3.Controls.Add(this.groupBox3);
             this.tabPage3.Controls.Add(this.groupBox2);
             this.tabPage3.Controls.Add(this.groupBox1);
-            this.tabPage3.Location = new System.Drawing.Point(4, 21);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(294, 322);
+            this.tabPage3.Size = new System.Drawing.Size(294, 321);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "控制、验证及载入";
             // 
@@ -1294,7 +1295,7 @@
             this.groupBox3.ForeColor = System.Drawing.Color.White;
             this.groupBox3.Location = new System.Drawing.Point(0, 114);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(294, 76);
+            this.groupBox3.Size = new System.Drawing.Size(294, 75);
             this.groupBox3.TabIndex = 2;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "文段载入";
@@ -1309,7 +1310,7 @@
             this.panelTextIn.Enabled = false;
             this.panelTextIn.Location = new System.Drawing.Point(3, 17);
             this.panelTextIn.Name = "panelTextIn";
-            this.panelTextIn.Size = new System.Drawing.Size(167, 56);
+            this.panelTextIn.Size = new System.Drawing.Size(167, 55);
             this.panelTextIn.TabIndex = 4;
             // 
             // label11
@@ -1341,7 +1342,7 @@
             this.groupBox2.Controls.Add(this.label13);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.groupBox2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.groupBox2.Location = new System.Drawing.Point(0, 190);
+            this.groupBox2.Location = new System.Drawing.Point(0, 189);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(294, 132);
             this.groupBox2.TabIndex = 1;
@@ -1439,9 +1440,9 @@
             // 
             this.tabPage4.BackColor = System.Drawing.Color.DimGray;
             this.tabPage4.Controls.Add(this.tableLayoutPanel1);
-            this.tabPage4.Location = new System.Drawing.Point(4, 21);
+            this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(294, 322);
+            this.tabPage4.Size = new System.Drawing.Size(294, 321);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "高级功能";
             // 
@@ -1461,7 +1462,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 23F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 23F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(294, 322);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(294, 321);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // checkBox28
