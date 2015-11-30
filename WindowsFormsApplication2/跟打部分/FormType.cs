@@ -10,6 +10,7 @@ using System.Runtime.InteropServices;
 using System.IO;
 using System.Text.RegularExpressions; //正则
 using System.Collections;
+using System.Diagnostics;
 using System.Windows.Forms.DataVisualization.Charting;
 using System.Threading;
 using System.Security.Cryptography;
@@ -91,7 +92,8 @@ namespace WindowsFormsApplication2
             //MessageBox.Show(oThread.ThreadState.ToString());
             RegisterHotKey(this.Handle, 2, (int)KeyModifiers.None, (Keys.F4)); //获取
             RegisterHotKey(this.Handle, 3, (int)KeyModifiers.None, (Keys.F3)); //重打
-            RegisterHotKey(this.Handle, 4, (int)KeyModifiers.None, (Keys.F6)); //发文测试
+            RegisterHotKey(this.Handle, 4, (int)KeyModifiers.None, (Keys.F5)); //换群//todo根据命需求而改
+            RegisterHotKey(this.Handle, 5, (int)KeyModifiers.None, (Keys.F6)); //发文测试
 
             //RegisterHotKey(this.Handle, 6, (int)KeyModifiers.None, (Keys.F8)); //接收挑战
             F5();
@@ -118,6 +120,8 @@ namespace WindowsFormsApplication2
                 //采用默认的图片显示
                 //LoadTheme("", Theme.ThemeColorBG, Theme.ThemeColorFC, Theme.ThemeBG);
             }
+            Debug.WriteLine(this.textBoxEx1.Width + " / " + this.splitContainer3.Panel1.Width);
+            this.textBoxEx1.Width = this.splitContainer3.Panel1.Width;
         }
 
         //钩子退格
@@ -2824,6 +2828,10 @@ namespace WindowsFormsApplication2
                         F3();
                     }
                     else if ((int)m.WParam == 4)
+                    {
+                        F5();
+                    }
+                    else if ((int)m.WParam == 5)
                     { //F6
                         if (NewSendText.发文状态)// (zdSendText.isHand) //手动模式
                         {
@@ -3364,7 +3372,8 @@ namespace WindowsFormsApplication2
                         "网络设置",
                         "消息管理器",
                         "QQ数据线",
-                        "骏伯网络科技"
+                        "骏伯网络科技",
+                        "QQ"
                     };
                 var s = new StringBuilder(512);
                 GetWindowText(hwnd, s, s.Capacity);
@@ -4526,11 +4535,10 @@ namespace WindowsFormsApplication2
             {
                 this.将目前文章乱序ToolStripMenuItem.PerformClick();
             }
-            //todo 根据命需求，屏蔽F1 F2 F5
-            //            else if (e.KeyCode == Keys.F5)
-            //            {
-            //                F5();
-            //            }
+            else if (e.KeyCode == Keys.F5)
+            {
+                F5();
+            }
             else if (e.KeyCode == Keys.PageDown)
             {
                 int c = this.TSMI2.DropDownItems.Count;
@@ -4574,18 +4582,18 @@ namespace WindowsFormsApplication2
             }
             else if (e.KeyCode == Keys.End)
             {
-            }//todo 根据命需求，屏蔽F1 F2 F5
-             //            else if (e.KeyCode == Keys.F1)
-             //            {
-             //                //string s = this.SeriesSpeed.Points.
-             //                if (sw != 0) return;
-             //                this.设置ToolStripMenuItem1.PerformClick();
-             //            }
-             //            else if (e.KeyCode == Keys.F2)
-             //            {
-             //                if (sw != 0) return;
-             //                this.新发文ToolStripMenuItem.PerformClick();
-             //            }
+            }
+            else if (e.KeyCode == Keys.F1)
+            {
+                //string s = this.SeriesSpeed.Points.
+                if (sw != 0) return;
+                this.设置ToolStripMenuItem1.PerformClick();
+            }
+            else if (e.KeyCode == Keys.F2)
+            {
+                if (sw != 0) return;
+                this.新发文ToolStripMenuItem.PerformClick();
+            }
             else if (e.KeyCode == Keys.V && e.Control)
             {
 
