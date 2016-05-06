@@ -3342,6 +3342,7 @@ namespace WindowsFormsApplication2
                 var r = new Regex(@"QQ20\d{2}");
                 var ex = new[]
                     {
+                        "QQ",
                         "TXMenuWindow",
                         "FaceSelector",
                         "TXFloatingWnd",
@@ -3352,8 +3353,7 @@ namespace WindowsFormsApplication2
                         "更换房间头像",
                         "网络设置",
                         "消息管理器",
-                        "QQ数据线",
-                        "骏伯网络科技"
+                        "QQ数据线"
                     };
                 var s = new StringBuilder(512);
                 GetWindowText(hwnd, s, s.Capacity);
@@ -4102,7 +4102,7 @@ namespace WindowsFormsApplication2
             Glob.词库理论码长 = 0;
             var startTime = DateTime.Now;
             const string bd =
-                @"，。“”！（）()~·#￥%&*_[]{}‘’/\<>,.《》？：；、—…1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPRSTUVWXYZ";
+                @"，。“”！（）()~·#￥%&*_[]{}‘’/\<>,.《》？：；、—…1234567890";//abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPRSTUVWXYZ
             const string bd2 = @"“”（）！《》？";
             BeginInvoke(new MethodInvoker(() =>
                 {
@@ -4283,7 +4283,7 @@ namespace WindowsFormsApplication2
             var bm = word;
             var findit = 0;
             const string bd =
-                @"，。“”！（）()~·#￥%&*_[]{}‘’/\<>,.《》？：；、—…1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPRSTUVWXYZ";
+                @"，。“”！（）()~·#￥%&*_[]{}‘’/\<>,.《》？：；、—…1234567890";//abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPRSTUVWXYZ
             if (!bd.Contains(word))
             {
                 var find = Glob.BmTips.FindAll(o => o.Contains(word));

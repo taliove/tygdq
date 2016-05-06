@@ -16,10 +16,10 @@ namespace WindowsFormsApplication2
     public class Glob
     { //一些全局变量
         private const string _ver = "0.94";
-        public static string Ver = ".16";
+        public static string Ver = ".17";
 
         public static string Form = "添雨跟打器v" + _ver;
-        public static string Instration = " t46 [看打版]"; //尾发送字符
+        public static string Instration = " t46"; //尾发送字符
         public static string VerInstance = _ver + Ver;
         //public static int su = 0;//测试用的
         public static string BianMa = ""; //编码查询
