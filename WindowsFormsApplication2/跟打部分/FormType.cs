@@ -3935,10 +3935,6 @@ namespace WindowsFormsApplication2
             ClipboardHandler.SetTextToClipboard("129842316");
         }
 
-        private void 帮助问答释疑ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            System.Diagnostics.Process.Start("http://taliove.diandian.com/TYWD");
-        }
         #endregion
 
         #region 表格右键
@@ -4067,7 +4063,7 @@ namespace WindowsFormsApplication2
 
         private void 访问官方网站ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start("http://taliove.diandian.com");
+            System.Diagnostics.Process.Start("http://www.taliove.com");
         }
         #endregion
 
