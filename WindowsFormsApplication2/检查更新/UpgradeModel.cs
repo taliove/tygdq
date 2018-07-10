@@ -27,7 +27,7 @@ namespace WindowsFormsApplication2.检查更新
         #region 属性
 
         private Regex _getInfo = new Regex(@"\[taliove\].+\[\/taliove\]");
-        private string _url = "http://taliove.diandian.com/updateInfo";
+        private string _url = "http://www.taliove.com/gdq-download/updateinfo/";
         public string 获取 { set; get; }
         public string 标题 { set; get; }
         private Regex _getTitle = new Regex(@"(?<=\[title\]).+(?=\[\/title\])");
@@ -42,7 +42,7 @@ namespace WindowsFormsApplication2.检查更新
         private Regex _getDate = new Regex(@"(?<=\[date\]).+(?=\[\/date\])");
 
         public string 更新内容 { get; set; }
-        private Regex _getContext = new Regex(@"(?<=\[context\]).+(?=\[\/context\])");
+        private Regex _getContext = new Regex(@"(?<=\[content\]).+(?=\[\/content\])");
 
         public string 其它信息 { set; get; }
         private Regex _getOther = new Regex(@"(?<=\[detail\]).+(?=\[\/detail\])");
@@ -87,6 +87,7 @@ namespace WindowsFormsApplication2.检查更新
                 readerOfStream.Close();
                 receviceStream.Close();
                 result.Close();
+                strHTML = strHTML.Replace("&lt;", "<").Replace("&gt;",">");
                 获取 = _getInfo.Match(strHTML).ToString();
                 版本 = _getVersion.Match(获取).ToString();
                 //对版本进行判断

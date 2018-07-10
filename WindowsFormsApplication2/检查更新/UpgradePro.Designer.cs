@@ -103,6 +103,7 @@
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "程序更新";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.UpgradePro_FormClosed);
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 

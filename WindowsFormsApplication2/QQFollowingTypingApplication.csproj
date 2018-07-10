@@ -346,6 +346,7 @@
     <Content Include="rain_48x48.ico" />
     <None Include="Resources\doing.png" />
     <None Include="Resources\doing.gif" />
+    <None Include="Resources\pay2.png" />
     <Content Include="添雨建议logo.ico" />
     <None Include="bin\Release\doing.gif" />
     <EmbeddedResource Include="Resources\3.jpg" />
