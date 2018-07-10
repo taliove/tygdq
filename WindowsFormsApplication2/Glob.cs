@@ -16,7 +16,7 @@ namespace WindowsFormsApplication2
     public class Glob
     { //一些全局变量
         private const string _ver = "0.94";
-        public static string Ver = ".17";
+        public static string Ver = ".18";
 
         public static string Form = "添雨跟打器v" + _ver;
         public static string Instration = " t46"; //尾发送字符

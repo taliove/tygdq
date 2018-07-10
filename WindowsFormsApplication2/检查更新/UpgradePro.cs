@@ -21,22 +21,27 @@ namespace WindowsFormsApplication2.检查更新
             InitializeComponent();
             UpgradeModel = new UpgradeModel();
             this.panel1.Paint += panel1_Paint;
-            UpgradeModel.HasUpdated += (sender, b) => this.Invoke(new MethodInvoker(() => { btnSeeContext.Enabled = b; }));
+            UpgradeModel.HasUpdated += UpgradeModel_HasUpdated;
             this.rtbInfo.VisibleChanged += (sender, args) => btnSeeContext.Text = this.rtbInfo.Visible ? "返回" : "查看更新说明";
+        }
+
+        private void UpgradeModel_HasUpdated(object sender, bool b)
+        {
+            this.Invoke(new MethodInvoker(() => { btnSeeContext.Enabled = b; }));
         }
 
         void panel1_Paint(object sender, PaintEventArgs e)
         {
             var font1 = new Font("微软雅黑", 16f);
             var font2 = new Font(font1.FontFamily, 45);
-            e.Graphics.DrawString("当前版本",font1,Brushes.Gray,10,10);
-            e.Graphics.DrawString(Glob.VerInstance,font2, Brushes.Gray,30,40);
+            e.Graphics.DrawString("当前版本", font1, Brushes.Gray, 10, 10);
+            e.Graphics.DrawString(Glob.VerInstance, font2, Brushes.Gray, 30, 40);
             if (UpgradeModel.是否有更新 && !UpgradeModel.是否有异常)
             {
-                e.Graphics.DrawString("更新版本 " + UpgradeModel.日期.ToShortDateString(),font1,Brushes.DimGray,10,115);
-                e.Graphics.DrawString(UpgradeModel.版本,font2,Brushes.HotPink,30,155);
+                e.Graphics.DrawString("更新版本 " + UpgradeModel.日期.ToShortDateString(), font1, Brushes.DimGray, 10, 115);
+                e.Graphics.DrawString(UpgradeModel.版本, font2, Brushes.HotPink, 30, 155);
             }
-          
+
             if (UpgradeModel.是否有异常)
             {
                 e.Graphics.DrawString("更新异常！", font1, Brushes.Red, 10, 135);
@@ -44,7 +49,7 @@ namespace WindowsFormsApplication2.检查更新
 
             if (!UpgradeModel.是否有更新 && _start)
             {
-                e.Graphics.DrawString("暂无更新！", font1, Brushes.Coral, 10, 135);
+                e.Graphics.DrawString("暂无更新！", font1, Brushes.Coral, 10, 155);
             }
         }
 
@@ -87,6 +92,14 @@ namespace WindowsFormsApplication2.检查更新
         private void rtbInfo_LinkClicked(object sender, LinkClickedEventArgs e)
         {
             System.Diagnostics.Process.Start(e.LinkText);
+        }
+
+        private void UpgradePro_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (UpgradeModel != null)
+            {
+                UpgradeModel.HasUpdated -= UpgradeModel_HasUpdated;
+            }
         }
     }
 }

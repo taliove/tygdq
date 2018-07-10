@@ -873,8 +873,13 @@ namespace WindowsFormsApplication2
                     {
                         TextAll += NewSendText.词组[ro.Next(0, NewSendText.词组.Length - 1)] + NewSendText.词组发送分隔符;
                     }
+
                     if (NewSendText.词组发送分隔符.Length > 0)
-                        TextAll = TextAll.Remove(TextAll.Length - NewSendText.词组发送分隔符.Length, NewSendText.词组发送分隔符.Length) + "。";
+                    {
+                        TextAll = TextAll.Remove(TextAll.Length - NewSendText.词组发送分隔符.Length,
+                                      NewSendText.词组发送分隔符.Length);
+                    }
+
                     //MessageBox.Show("已结束:" + numlist.Length + "\n当前度：" + NewSendText.发文全文.Length);
                     this.textBoxEx1.Clear();
                     richTextBox1.SelectAll();
@@ -3935,10 +3940,6 @@ namespace WindowsFormsApplication2
             ClipboardHandler.SetTextToClipboard("129842316");
         }
 
-        private void 帮助问答释疑ToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            System.Diagnostics.Process.Start("http://taliove.diandian.com/TYWD");
-        }
         #endregion
 
         #region 表格右键
@@ -4067,7 +4068,7 @@ namespace WindowsFormsApplication2
 
         private void 访问官方网站ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start("http://taliove.diandian.com");
+            System.Diagnostics.Process.Start("http://www.taliove.com");
         }
         #endregion
 

@@ -1,0 +1,5 @@
+TyDll/bin/
+TyDll/obj/
+*/bin/*
+WindowsFormsApplication2/obj/
+.vs/

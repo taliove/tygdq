@@ -11,7 +11,7 @@ using System.Resources;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("添雨个人工作室")]
 [assembly: AssemblyProduct("添雨跟打器")]
-[assembly: AssemblyCopyright("Copyright ©  2012")]
+[assembly: AssemblyCopyright("Copyright ©  2012-2018")]
 [assembly: AssemblyTrademark("添雨")]
 [assembly: AssemblyCulture("")]
 

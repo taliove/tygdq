@@ -211,7 +211,6 @@
             this.检查更新情况ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.访问官方网站ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.复制官方QQ群号ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.帮助问答释疑ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.TSMI6 = new System.Windows.Forms.ToolStripMenuItem();
             this.捐助ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel5 = new System.Windows.Forms.Panel();
@@ -2231,8 +2230,7 @@
             this.检查更新ToolStripMenuItem,
             this.检查更新情况ToolStripMenuItem,
             this.访问官方网站ToolStripMenuItem,
-            this.复制官方QQ群号ToolStripMenuItem,
-            this.帮助问答释疑ToolStripMenuItem});
+            this.复制官方QQ群号ToolStripMenuItem});
             this.TSMI5.ForeColor = System.Drawing.Color.White;
             this.TSMI5.Name = "TSMI5";
             this.TSMI5.Padding = new System.Windows.Forms.Padding(0);
@@ -2324,13 +2322,6 @@
             this.复制官方QQ群号ToolStripMenuItem.Size = new System.Drawing.Size(173, 24);
             this.复制官方QQ群号ToolStripMenuItem.Text = "复制 官方QQ群";
             this.复制官方QQ群号ToolStripMenuItem.Click += new System.EventHandler(this.复制官方QQ群号ToolStripMenuItem_Click);
-            // 
-            // 帮助问答释疑ToolStripMenuItem
-            // 
-            this.帮助问答释疑ToolStripMenuItem.Name = "帮助问答释疑ToolStripMenuItem";
-            this.帮助问答释疑ToolStripMenuItem.Size = new System.Drawing.Size(173, 24);
-            this.帮助问答释疑ToolStripMenuItem.Text = "帮助 问答释疑";
-            this.帮助问答释疑ToolStripMenuItem.Click += new System.EventHandler(this.帮助问答释疑ToolStripMenuItem_Click);
             // 
             // TSMI6
             // 
@@ -2617,7 +2608,6 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
         private ToolButton tsb标注;
         private System.Windows.Forms.ToolStripMenuItem 复制官方QQ群号ToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem 帮助问答释疑ToolStripMenuItem;
         private System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;

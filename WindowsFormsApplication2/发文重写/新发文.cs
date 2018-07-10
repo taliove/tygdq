@@ -40,7 +40,8 @@ namespace WindowsFormsApplication2
             _Ini t2 = new _Ini("Ttyping.ty");
             this.cbxTickOut.Checked = bool.Parse(t2.IniReadValue("发文面板配置", "自动剔除空格", "True"));
             this.cbx乱序全段不重复.Checked = bool.Parse(t2.IniReadValue("发文面板配置", "乱序全段不重复", "False"));
-            if (!File.Exists(Application.StartupPath + "\\TyDll.dll")) {
+            if (!File.Exists(Application.StartupPath + "\\TyDll.dll"))
+            {
                 this.lbxTextList.Items.Clear();
                 this.lbxTextList.SelectedIndexChanged -= new EventHandler(lbxTextList_SelectedIndexChanged);
                 MessageBox.Show("未找到TyDll.dll文件！");
@@ -53,7 +54,8 @@ namespace WindowsFormsApplication2
         {
             ClearAll();
             int getid = (sender as TabControl).SelectedIndex;
-            if (getid == 2) { //剪切板
+            if (getid == 2)
+            { //剪切板
                 try
                 {
                     rtbClipboard.Text = Clipboard.GetText();
@@ -63,7 +65,8 @@ namespace WindowsFormsApplication2
                     rtbClipboard.Text = err.Message + "，请自行粘贴！";
                 }
             }
-            else if (getid == 3) {
+            else if (getid == 3)
+            {
                 iniRead();//更新配置
             }
         }
@@ -79,7 +82,7 @@ namespace WindowsFormsApplication2
                 //_assembly = Assembly.GetExecutingAssembly();
                 GetText = TyDll.GetResources.GetText("Resources.TXT." + (sender as ListBox).Text + ".txt");
                 lblTitle.Text = (sender as ListBox).Text;
-                
+
                 ComText(GetText); //确认文章信息
             }
             switch (index)
@@ -96,29 +99,34 @@ namespace WindowsFormsApplication2
             NewSendText.文章地址 = index.ToString();
             //else {
             //    (sender as ListBox).ClearSelected();
-           // }
+            // }
         }
 
-        public void ComText(string Text) { //确认文章信息
-            if (Text.Length != 0) {
+        public void ComText(string Text)
+        { //确认文章信息
+            if (Text.Length != 0)
+            {
                 if (Text.Length > 300)
                 {
                     rtbShowText.Text = GetText.Substring(0, 300) + "[......未完]";
                 }
-                else {
+                else
+                {
                     rtbShowText.Text = GetText + "[已完]";
                 }
                 if (Text.Length > 25)
                 {
                     this.tbxSendCount.Text = "25";
                 }
-                else {
-                    this.tbxSendCount.Text = (Text.Length/2).ToString();
+                else
+                {
+                    this.tbxSendCount.Text = (Text.Length / 2).ToString();
                 }
                 //确认文章类型
                 isWords(Text);
                 //确认字数信息
-                if (this.lblStyle.Text == "词组")
+                bool isStrWords = this.lblStyle.Text == "词组";
+                if (isStrWords)
                 {
                     FindWords();
                 }
@@ -129,29 +137,37 @@ namespace WindowsFormsApplication2
                 tbxSendCount.Select();
                 tbxSendCount.MaxLength = lblTextCount.Text.Length;
                 tbxSendStart.MaxLength = lblTextCount.Text.Length;
-                if (this.cbxTickOut.Checked)
+                if (this.cbxTickOut.Checked && !isStrWords)
+                {
                     GetText = TickBlock(Text, "");
+                }
             }
         }
 
         /// <summary>
         /// 找到词组信息
         /// </summary>
-        private void FindWords() {
+        private void FindWords()
+        {
             string[] getWords;
             if (cbxSplit.SelectedIndex == 1)
+            {
                 getWords = GetText.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
+            }
             else
+            {
                 getWords = GetText.Split(split);
+            }
 
-            getWords = GetText.Split(split);
             if (getWords.Length > 1)
             {
                 lblTextCount.Text = getWords.Length.ToString();
                 ShowFlowText("找到" + getWords.Length + "个词组");
             }
             else
+            {
                 ShowFlowText("未找到词组，请确定您所选择的文件");
+            }
         }
         /// <summary>
         /// 显示浮动的信息
@@ -193,7 +209,8 @@ namespace WindowsFormsApplication2
         private void cbxSplit_SelectedIndexChanged(object sender, EventArgs e)
         {
             int index = (sender as ComboBox).SelectedIndex;
-            switch (index) {
+            switch (index)
+            {
                 case 0: split = ' '; break;
                 case 1: split = '\n'; break;
                 case 2: split = '\t'; break;
@@ -205,11 +222,13 @@ namespace WindowsFormsApplication2
         private void tabControl2_Selecting(object sender, TabControlCancelEventArgs e)
         {
             string getnow = (sender as TabControl).SelectedTab.Text;
-            if (lblStyle.Text == "单字") {
+            if (lblStyle.Text == "单字")
+            {
                 if (getnow == "文章") e.Cancel = true;
             }
 
-            if (lblStyle.Text == "文章") {
+            if (lblStyle.Text == "文章")
+            {
                 if (getnow == "单字") e.Cancel = true;
             }
 
@@ -220,14 +239,16 @@ namespace WindowsFormsApplication2
         private void lblStyle_TextChanged(object sender, EventArgs e)
         {
             string getit = (sender as Label).Text;
-            if (getit == "单字") {
+            if (getit == "单字")
+            {
                 (sender as Label).ForeColor = Color.DarkOliveGreen;
             }
             else if (getit == "文章")
             {
                 (sender as Label).ForeColor = Color.IndianRed;
             }
-            else if (getit == "词组") {
+            else if (getit == "词组")
+            {
                 (sender as Label).ForeColor = Color.DeepPink;
             }
             else
@@ -255,23 +276,25 @@ namespace WindowsFormsApplication2
                 this.tabControl2.SelectedIndex = 2;
                 if (this.cbxSplit.SelectedIndex == -1)
                     this.cbxSplit.SelectedIndex = 0;
-
-                string[] get = GetText.Split(split);
-                if (get.Length > 1)
-                {
-                    lblTextCount.Text = get.Length.ToString();
-                    ShowFlowText("找到" + get.Length + "个词组");
-                }
-                else
-                    ShowFlowText("未找到词组，请确定您所选择的文件");
+                this.FindWords();
+                //                string[] get = GetText.Split(split);
+                //                if (get.Length > 1)
+                //                {
+                //                    lblTextCount.Text = get.Length.ToString();
+                //                    ShowFlowText("找到" + get.Length + "个词组");
+                //                }
+                //                else
+                //                    ShowFlowText("未找到词组，请确定您所选择的文件");
             }
-            else {
+            else
+            {
                 ComText(GetText);
             }
         }
         #endregion
         #region 清除所有信息
-        private void ClearAll() {
+        private void ClearAll()
+        {
             if (lblTitle.Text.Length != 0)
             {
                 lblStyle.ResetText();
@@ -294,7 +317,8 @@ namespace WindowsFormsApplication2
                 speedfill();
                 this.cbxAuto.Enabled = false;
             }
-            else {
+            else
+            {
                 nudSendTimer.Enabled = false;
                 this.lblspeed.Text = "0";
                 this.cbxAuto.Enabled = true;
@@ -316,7 +340,8 @@ namespace WindowsFormsApplication2
 
         private void btnAllText_Click(object sender, EventArgs e)
         {
-            if (GetText.Length != 0) {
+            if (GetText.Length != 0)
+            {
                 this.tbxSendStart.Text = "0";
                 this.tbxSendCount.Text = GetText.Length.ToString();
             }
@@ -328,7 +353,8 @@ namespace WindowsFormsApplication2
             speedfill();
         }
 
-        private void speedfill() {
+        private void speedfill()
+        {
             try
             {
                 int textcount = int.Parse(this.tbxSendCount.Text);
@@ -351,7 +377,8 @@ namespace WindowsFormsApplication2
         private void listViewFile_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             ListViewHitTestInfo info = listViewFile.HitTest(e.X, e.Y); ;
-            if (info.Item != null) {
+            if (info.Item != null)
+            {
                 string Hearder = listViewFile.Columns[0].Text;
                 if (info.Item.Text == "..") //返回上一层
                 {
@@ -361,7 +388,7 @@ namespace WindowsFormsApplication2
                         if (Hearder.Length != 3)
                             path = Directory.GetParent(Hearder).FullName;//上一级目录
                     }
-                    catch {}
+                    catch { }
                     if (path.Length != 0)
                     {
                         ReadAll(path);
@@ -382,13 +409,15 @@ namespace WindowsFormsApplication2
                     {
                         ReadAll(info.Item.Text);//返回到我的电脑
                     }
-                    else {
+                    else
+                    {
                         string Dir = "";
                         if (Hearder[Hearder.Length - 1] == '\\')
                         {
                             Dir = Hearder + info.Item.Text;
                         }
-                        else {
+                        else
+                        {
                             Dir = Hearder + "\\" + info.Item.Text;
                         }
                         if (Dir.Length != 0)
@@ -431,7 +460,8 @@ namespace WindowsFormsApplication2
         }
 
         private int txtLocation = 0;
-        private void ReadAll(string path) {
+        private void ReadAll(string path)
+        {
             if (Directory.Exists(path))
             {
                 try
@@ -459,10 +489,12 @@ namespace WindowsFormsApplication2
                     }
                     this.lblFindTXTCount.Text = findCount.ToString();//找到文章数量
                 }
-                catch (Exception err) { MessageBox.Show(err.Message,"跟打器提示！"); }
+                catch (Exception err) { MessageBox.Show(err.Message, "跟打器提示！"); }
             }
-            else { //获取到文章
-                if (File.Exists(path)) {
+            else
+            { //获取到文章
+                if (File.Exists(path))
+                {
                     StreamReader fm = new StreamReader(path, System.Text.Encoding.Default);
                     GetText = fm.ReadToEnd();
                     lblTitle.Text = Path.GetFileNameWithoutExtension(path);
@@ -495,12 +527,14 @@ namespace WindowsFormsApplication2
                     this.lblFindTXTCount.ForeColor = Color.Black;
                 }
             }
-            catch {
+            catch
+            {
                 this.lblFindTXTCount.ForeColor = Color.Black;
             }
         }
 
-        private void HeaderFresh(string dir) {
+        private void HeaderFresh(string dir)
+        {
             listViewFile.Clear();
             ColumnHeader header1 = new ColumnHeader();
             header1.Width = 245;
@@ -520,13 +554,14 @@ namespace WindowsFormsApplication2
             if (e.Button == System.Windows.Forms.MouseButtons.Right && listViewFile.SelectedItems.Count > 0)
             {
                 cmsMenu.Items[0].Text = listViewFile.SelectedItems[0].Text;
-                cmsMenu.Show(this,e.Location);
+                cmsMenu.Show(this, e.Location);
             }
         }
 
         private void cmsMenu_Opening(object sender, CancelEventArgs e)
         {
-            if (listViewFile.SelectedItems.Count == 0) {
+            if (listViewFile.SelectedItems.Count == 0)
+            {
                 e.Cancel = true;
                 return;
             }
@@ -570,9 +605,10 @@ namespace WindowsFormsApplication2
             NewSendText.发文状态 = true;
             if (NewSendText.是否周期)
             {
-                frm.SendTTest();                
+                frm.SendTTest();
             }
-            else {
+            else
+            {
                 frm.SendAOnce();
             }
             frm.发文状态ToolStripMenuItem.PerformClick();
@@ -587,7 +623,8 @@ namespace WindowsFormsApplication2
             {
                 rtbClipboard.Text = Clipboard.GetText();
             }
-            catch (Exception err) {
+            catch (Exception err)
+            {
                 rtbClipboard.Text = err.Message + "，请自行粘贴！";
             }
         }
@@ -603,7 +640,8 @@ namespace WindowsFormsApplication2
         private void tbxTitle_TextChanged(object sender, EventArgs e)
         {
             lblTitle.Text = (sender as TextBox).Text;
-            if (lblTitle.Text.Length == 0) {
+            if (lblTitle.Text.Length == 0)
+            {
                 lblTitle.Text = "来自剪切板";
             }
         }
@@ -615,7 +653,7 @@ namespace WindowsFormsApplication2
 
         private void btnTickBlock_Click(object sender, EventArgs e)
         {
-            rtbClipboard.Text = TickBlock(rtbClipboard.Text,"");
+            rtbClipboard.Text = TickBlock(rtbClipboard.Text, "");
         }
 
         private void btnFillIt_Click(object sender, EventArgs e)
@@ -625,7 +663,8 @@ namespace WindowsFormsApplication2
         #endregion
 
         #region 文章处理
-        private string TickBlock(string text,string target) {
+        private string TickBlock(string text, string target)
+        {
             string s = text;
             s = s.Replace(" ", target);
             s = s.Replace("　", target);
@@ -684,7 +723,8 @@ namespace WindowsFormsApplication2
                         rtbShowText.ForeColor = Color.IndianRed;
                         btnGoSend.Enabled = false;
                     }
-                    else {
+                    else
+                    {
                         rtbShowText.ForeColor = Color.Black;
                         btnGoSend.Enabled = true;
                     }
@@ -692,7 +732,8 @@ namespace WindowsFormsApplication2
             }
         }
 
-        private void Confrim() {
+        private void Confrim()
+        {
             if (GetText.Length != 0)
             {
                 string te = this.tbxSendCount.Text;
@@ -771,7 +812,8 @@ namespace WindowsFormsApplication2
             iniRead();
         }
 
-        private bool iniRead() {
+        private bool iniRead()
+        {
             try
             {
                 this.lbxIni.Items.Clear();
@@ -780,14 +822,15 @@ namespace WindowsFormsApplication2
                 int count = getini.Count;
                 for (int i = 0; i < count; i++)
                 {
-                    string getit = getData.IniReadValue("发文配置",getini[i].ToString(),"0");
+                    string getit = getData.IniReadValue("发文配置", getini[i].ToString(), "0");
                     if (getit == "0") return false;
                     string[] get = getit.ToString().Split('|');
                     this.lbxIni.Items.Add(getini[i] + " | " + get[3] + " | " + get[12]);
                 }
                 return true;
             }
-            catch (Exception err){
+            catch (Exception err)
+            {
                 MessageBox.Show(err.Message);
                 return false;
             }
@@ -801,11 +844,12 @@ namespace WindowsFormsApplication2
             {
                 select = (sender as ListBox).SelectedItem.ToString();
             }
-            catch {
+            catch
+            {
                 return;
             }
             string[] idget = select.Split('|');
-            string get = getdata.IniReadValue("发文配置",idget[0].Trim(), "0");
+            string get = getdata.IniReadValue("发文配置", idget[0].Trim(), "0");
             if (get != "0")
             {
                 string[] getAll = get.Split('|');
@@ -921,7 +965,8 @@ namespace WindowsFormsApplication2
             {
                 t2.IniWriteValue("发文面板配置", "自动剔除空格", "True");
             }
-            else {
+            else
+            {
                 t2.IniWriteValue("发文面板配置", "自动剔除空格", "False");
             }
         }
