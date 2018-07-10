@@ -873,8 +873,13 @@ namespace WindowsFormsApplication2
                     {
                         TextAll += NewSendText.词组[ro.Next(0, NewSendText.词组.Length - 1)] + NewSendText.词组发送分隔符;
                     }
+
                     if (NewSendText.词组发送分隔符.Length > 0)
-                        TextAll = TextAll.Remove(TextAll.Length - NewSendText.词组发送分隔符.Length, NewSendText.词组发送分隔符.Length) + "。";
+                    {
+                        TextAll = TextAll.Remove(TextAll.Length - NewSendText.词组发送分隔符.Length,
+                                      NewSendText.词组发送分隔符.Length);
+                    }
+
                     //MessageBox.Show("已结束:" + numlist.Length + "\n当前度：" + NewSendText.发文全文.Length);
                     this.textBoxEx1.Clear();
                     richTextBox1.SelectAll();
