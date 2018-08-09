@@ -2900,7 +2900,9 @@ namespace WindowsFormsApplication2
                         RECT rect = new RECT();
                         IntPtr get = FindWindow("TXGuiFoundation", title);
                         GetWindowRect(get, ref rect);
-                        SetCursorPos(rect.Left + 20, rect.Top + 200);
+                        int width = rect.Right - rect.Left;
+                        int height = rect.Bottom - rect.Top;
+                        SetCursorPos(rect.Left + width / 2, rect.Top + height / 2);
                         Delay(Glob.DelaySend);
                         mouse_event(MouseEventFlag.LeftDown, 0, 0, 0, win);
                         mouse_event(MouseEventFlag.LeftUp, 0, 0, 0, win);
@@ -2915,15 +2917,21 @@ namespace WindowsFormsApplication2
                     string get_ = "";
                     try
                     {
-                        get_ = Clipboard.GetDataObject().GetData(DataFormats.StringFormat).ToString();
+                        var clipDataObject = Clipboard.GetDataObject();
+                        if (clipDataObject != null)
+                        {
+                            get_ = clipDataObject.GetData(DataFormats.StringFormat).ToString();
+                        }
                         Regex checkIf = new Regex("\r(?!\n)");
                         if (checkIf.IsMatch(get_))
                         {
                             get_ = get_.Replace("\r", "\r\n");  //匹配则是QQ2009+
                         }
                     }
-                    catch
+                    catch (Exception ex)
                     {
+                        System.Console.WriteLine(ex.Message);
+                        System.Console.WriteLine(ex.StackTrace);
                         this.Activate();
                         Delay(Glob.DelaySend);
                         SendKeys.SendWait("^s");
